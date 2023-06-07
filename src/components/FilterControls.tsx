@@ -25,18 +25,22 @@ export const FilterControls = () => {
           type="checkbox"
           id="played"
           name="played"
-          className="mr-2"
+          className="mr-2 disabled:opacity-50"
           checked={filter.played}
-          onChange={handelOnChangeFilter} />
+          disabled={filter["not-played"] === false}
+          onChange={handelOnChangeFilter}
+        />
         <label htmlFor="played">Played</label>
 
         <input
           type="checkbox"
           id="not-played"
           name="not-played"
-          className="ml-4 mr-2"
+          className="ml-4 mr-2 disabled:opacity-50"
           checked={filter["not-played"]}
-          onChange={handelOnChangeFilter} />
+          disabled={filter.played === false}
+          onChange={handelOnChangeFilter}
+        />
         <label htmlFor="not-played">Not Played</label>
       </div>
     </div>
