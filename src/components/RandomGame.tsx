@@ -1,21 +1,26 @@
 "use client";
 
-import React, { useCallback } from "react";
-import { LibraryGame } from "@/LibraryGame";
+import React, { useCallback, useMemo } from "react";
 import { GameCard } from "./GameCard";
+import { LibraryGame } from "@/types/LibraryGame";
+import { useFilterGames } from "@/hooks/useFilterGames";
+import { useRandomGame } from "@/hooks/useRandomGame";
 
-type Props = {
-  games: LibraryGame[];
-};
+export const RandomGame = () => {
+  const { filter, setFilter } = useFilterGames();
+  const { randomItem, randomize } = useRandomGame();
 
-export const RandomGame = ({ games }: Props) => {
-  const [randomItem, setRandomItem] = React.useState<LibraryGame | null>(
-    games[Math.floor(Math.random() * games.length)]
+  const handelOnChangeFilter = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, checked } = e.target;
+
+      setFilter((prev) => ({
+        ...prev,
+        [name]: checked,
+      }));
+    },
+    [setFilter]
   );
-
-  const randomize = useCallback(() => {
-    setRandomItem(games[Math.floor(Math.random() * games.length)]);
-  }, [games]);
 
   if (!randomItem) return <div>loading...</div>;
 
@@ -37,7 +42,8 @@ export const RandomGame = ({ games }: Props) => {
             id="played"
             name="played"
             className="mr-2"
-            checked={false}
+            checked={filter.played}
+            onChange={handelOnChangeFilter}
           />
           <label htmlFor="played">Played</label>
 
@@ -46,7 +52,8 @@ export const RandomGame = ({ games }: Props) => {
             id="not-played"
             name="not-played"
             className="ml-4 mr-2"
-            checked={true}
+            checked={filter["not-played"]}
+            onChange={handelOnChangeFilter}
           />
           <label htmlFor="not-played">Not Played</label>
         </div>

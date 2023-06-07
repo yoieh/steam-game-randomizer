@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { LibraryGame } from "@/LibraryGame";
 import { convertMinutesToReadableTime } from "@/utils/StringFormat";
+import { LibraryGame } from "@/types/LibraryGame";
 
 export const GameCard = ({
   game,

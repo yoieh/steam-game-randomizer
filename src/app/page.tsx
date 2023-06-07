@@ -3,6 +3,7 @@ import { getOwnedGames } from "../services/user";
 
 import { GameCard } from "@/components/GameCard";
 import { RandomGame } from "@/components/RandomGame";
+import { GamesProvider } from "@/context/GamesProvider";
 
 export default function Home() {
   const steamId = process.env.STEAM_ID;
@@ -26,25 +27,27 @@ export default function Home() {
         </p>
       </div>
 
-      <RandomGame games={games} />
+      <GamesProvider games={games}>
+        <RandomGame />
 
-      <div className="flex flex-col items-center justify-center w-full mb-8">
-        <p className="text-lg">
-          You have played {games.length - filteredGames.length} of your{" "}
-          {games.length} games.
-        </p>
-        <p className="text-lg">
-          You still have {filteredGames.length} games to play.
-        </p>
-        <p className="text-sm opacity-40">SteamId: {steamId}</p>
-      </div>
+        <div className="flex flex-col items-center justify-center w-full mb-8">
+          <p className="text-lg">
+            You have played {games.length - filteredGames.length} of your{" "}
+            {games.length} games.
+          </p>
+          <p className="text-lg">
+            You still have {filteredGames.length} games to play.
+          </p>
+          <p className="text-sm opacity-40">SteamId: {steamId}</p>
+        </div>
 
-      {/* list of cards */}
-      <div className="flex flex-wrap justify-center mb-8 sm:w-full">
-        {games.map((game) => (
-          <GameCard key={game.appid} game={game} />
-        ))}
-      </div>
+        {/* list of cards */}
+        <div className="flex flex-wrap justify-center mb-8 sm:w-full">
+          {games.map((game) => (
+            <GameCard key={game.appid} game={game} />
+          ))}
+        </div>
+      </GamesProvider>
     </main>
   );
 }
