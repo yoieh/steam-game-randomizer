@@ -1,9 +1,10 @@
 import { use } from "react";
 import { getOwnedGames } from "../services/user";
 
-import { GameCard } from "@/components/GameCard";
 import { RandomGame } from "@/components/RandomGame";
 import { GamesProvider } from "@/context/GamesProvider";
+import { LibraryGame } from "@/types/LibraryGame";
+import { GamesList } from "./GamesList";
 
 export default function Home() {
   const steamId = process.env.STEAM_ID;
@@ -41,12 +42,7 @@ export default function Home() {
           <p className="text-sm opacity-40">SteamId: {steamId}</p>
         </div>
 
-        {/* list of cards */}
-        <div className="flex flex-wrap justify-center mb-8 sm:w-full">
-          {games.map((game) => (
-            <GameCard key={game.appid} game={game} />
-          ))}
-        </div>
+        <GamesList />
       </GamesProvider>
     </main>
   );

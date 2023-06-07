@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useMemo } from "react";
-import { GameCard } from "./GameCard";
+import { GameCard, GameCardSkeleton } from "./GameCard";
 import { LibraryGame } from "@/types/LibraryGame";
 import { useFilterGames } from "@/hooks/useFilterGames";
 import { useRandomGame } from "@/hooks/useRandomGame";
@@ -22,7 +22,7 @@ export const RandomGame = () => {
     [setFilter]
   );
 
-  if (!randomItem) return <div>loading...</div>;
+  if (!randomItem) return <GameCardSkeleton size="lg" />;
 
   return (
     <>
