@@ -13,11 +13,11 @@ import { SignIn, SignOut } from "@/components/Sign";
 export default async function Home() {
   const session = await getServerSession();
 
-  const steamId = process.env.STEAM_ID;
+  // const steamId = process.env.STEAM_ID;
 
-  if (!steamId) return <div>No steamId defined</div>;
+  // if (!steamId) return <div>No steamId defined</div>;
 
-  const games = await getOwnedGames(steamId);
+  // const games = await getOwnedGames(steamId);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24 text-white">
@@ -34,7 +34,7 @@ export default async function Home() {
         <>
           <SignOut />
 
-          <GamesProvider games={games}>
+          <GamesProvider games={[]}>
             <RandomGameProvider>
               <RandomGame />
 
@@ -42,7 +42,7 @@ export default async function Home() {
 
               <FilterControls />
 
-              <FilterData steamId={steamId} />
+              <FilterData />
 
               <GamesList />
             </RandomGameProvider>

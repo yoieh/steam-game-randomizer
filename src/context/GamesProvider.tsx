@@ -1,6 +1,7 @@
 "use client";
 
-import { createContext, use, useMemo, useState } from "react";
+import { useSession } from "next-auth/react";
+import { createContext, useEffect, useMemo, useState } from "react";
 import { LibraryGame } from "@/types/LibraryGame";
 import { PlayerFilter } from "@/types/PlayerFilter";
 
@@ -28,7 +29,35 @@ export interface GamesProviderProps {
   games: LibraryGame[];
 }
 
-export const GamesProvider = ({ children, games }: GamesProviderProps) => {
+export const GamesProvider = ({ children }: GamesProviderProps) => {
+  const session = useSession();
+
+  const [games, setGames] = useState<LibraryGame[]>([]);
+
+  useEffect(() => {
+    const fetchGames = async () => {
+      if (!session.data?.user?.steam?.steamid) return;
+
+      const url = `/api/user/${session.data?.user?.steam?.steamid}/games`;
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+
+        setGames(data);
+
+        return data;
+      } catch (error) {
+        console.error("Error fetching game library:", error);
+        return [];
+      }
+    };
+
+    void fetchGames();
+  }, [session]);
+
   const [filter, setFilter] = useState<PlayerFilter>({
     played: true,
     "not-played": true,
