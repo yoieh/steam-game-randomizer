@@ -1,4 +1,5 @@
-import { use } from "react";
+import { getServerSession } from "next-auth";
+
 import { getOwnedGames } from "@/services/user";
 import { RandomGame } from "@/components/RandomGame";
 import { GamesProvider } from "@/context/GamesProvider";
@@ -7,13 +8,16 @@ import { FilterControls } from "@/components/FilterControls";
 import { RandomGameProvider } from "@/context/RandomGameProvider";
 import { FilterData } from "@/components/FilterData";
 import { GamesList } from "@/components/GamesList";
+import { SignIn, SignOut } from "@/components/Sign";
 
-export default function Home() {
-  const steamId = process.env.STEAM_ID;
+export default async function Home() {
+  const session = await getServerSession();
 
-  if (!steamId) return <div>No steamId defined</div>;
+  // const steamId = process.env.STEAM_ID;
 
-  const games = use(getOwnedGames(steamId));
+  // if (!steamId) return <div>No steamId defined</div>;
+
+  // const games = await getOwnedGames(steamId);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24 text-white">
@@ -26,19 +30,32 @@ export default function Home() {
         </p>
       </div>
 
-      <GamesProvider games={games}>
-        <RandomGameProvider>
-          <RandomGame />
+      {session ? (
+        <>
+          <SignOut />
 
-          <RandomGameControls />
+          <GamesProvider games={[]}>
+            <RandomGameProvider>
+              <RandomGame />
 
-          <FilterControls />
+              <RandomGameControls />
 
-          <FilterData steamId={steamId} />
+              <FilterControls />
 
-          <GamesList />
-        </RandomGameProvider>
-      </GamesProvider>
+              <FilterData />
+
+              <GamesList />
+            </RandomGameProvider>
+          </GamesProvider>
+        </>
+      ) : (
+        <div className="flex flex-col items-center justify-center w-full">
+          <p className="text-lg text-center">
+            Please login to your Steam account to use this app.
+          </p>
+          <SignIn />
+        </div>
+      )}
     </main>
   );
 }

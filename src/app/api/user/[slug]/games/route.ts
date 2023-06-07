@@ -9,7 +9,7 @@ export async function GET(
   }
 ) {
   const slug = params.slug;
-  const apiKey = process.env.STEAM_API_KEY; // Replace with your Steam Web API key
+  const apiKey = process.env.STEAM_SECRET; // Replace with your Steam Web API key
 
   const url = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=${apiKey}&steamid=${slug}&format=json&include_appinfo=true`;
   try {
