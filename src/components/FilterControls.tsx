@@ -1,9 +1,9 @@
 "use client";
+import { useGames } from "@/hooks/useGames";
 import React, { useCallback } from "react";
-import { useFilterGames } from "@/hooks/useFilterGames";
 
 export const FilterControls = () => {
-  const { filter, setFilter } = useFilterGames();
+  const { filter, setFilter } = useGames();
 
   const handelOnChangeFilter = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {

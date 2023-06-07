@@ -1,10 +1,10 @@
 "use client";
 
 import { GameCard } from "@/components/GameCard";
-import { useFilterGames } from "@/hooks/useFilterGames";
+import { useGames } from "@/hooks/useGames";
 
 export const GamesList = () => {
-  const { filteredGames } = useFilterGames();
+  const { filteredGames } = useGames();
 
   return (
     <div className="flex flex-wrap justify-center mb-8 sm:w-full">
