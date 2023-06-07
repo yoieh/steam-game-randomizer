@@ -19,8 +19,7 @@ export const FilterControls = () => {
 
   return (
     <div className="flex flex-col items-center justify-center w-full mb-8">
-      {/* checkbox */}
-      <div className="flex items-center justify-center w-full mt-8">
+      <div className="flex items-center justify-center w-full">
         <input
           type="checkbox"
           id="played"
