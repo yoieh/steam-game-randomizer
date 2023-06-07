@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useMemo, useState } from "react";
+import { createContext, use, useMemo, useState } from "react";
 import { LibraryGame } from "@/types/LibraryGame";
 import { PlayerFilter } from "@/types/PlayerFilter";
 
@@ -44,8 +44,20 @@ export const GamesProvider = ({ children, games }: GamesProviderProps) => {
     [filter, games]
   );
 
+  const sortedGames = useMemo(
+    () => games.sort((a, b) => a.playtime_forever - b.playtime_forever),
+    [games]
+  );
+
   return (
-    <gamesContext.Provider value={{ games, filteredGames, filter, setFilter }}>
+    <gamesContext.Provider
+      value={{
+        games: sortedGames,
+        filteredGames,
+        filter,
+        setFilter,
+      }}
+    >
       {children}
     </gamesContext.Provider>
   );
