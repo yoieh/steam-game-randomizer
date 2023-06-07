@@ -1,15 +1,12 @@
 import { use } from "react";
-import { getOwnedGames } from "../services/user";
-
+import { getOwnedGames } from "@/services/user";
 import { RandomGame } from "@/components/RandomGame";
 import { GamesProvider } from "@/context/GamesProvider";
-import { LibraryGame } from "@/types/LibraryGame";
-import { GamesList } from "./GamesList";
 import { RandomGameControls } from "@/components/RandomGameControls";
 import { FilterControls } from "@/components/FilterControls";
 import { RandomGameProvider } from "@/context/RandomGameProvider";
-import { useFilterGames } from "@/hooks/useFilterGames";
-import { FilterData } from "../components/FilterData";
+import { FilterData } from "@/components/FilterData";
+import { GamesList } from "@/components/GamesList";
 
 export default function Home() {
   const steamId = process.env.STEAM_ID;
