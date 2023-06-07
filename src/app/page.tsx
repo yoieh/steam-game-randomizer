@@ -5,6 +5,9 @@ import { RandomGame } from "@/components/RandomGame";
 import { GamesProvider } from "@/context/GamesProvider";
 import { LibraryGame } from "@/types/LibraryGame";
 import { GamesList } from "./GamesList";
+import { RandomGameControls } from "@/components/RandomGameControls";
+import { FilterControls } from "@/components/FilterControls";
+import { RandomGameProvider } from "@/context/RandomGameProvider";
 
 export default function Home() {
   const steamId = process.env.STEAM_ID;
@@ -29,20 +32,26 @@ export default function Home() {
       </div>
 
       <GamesProvider games={games}>
-        <RandomGame />
+        <RandomGameProvider>
+          <RandomGame />
 
-        <div className="flex flex-col items-center justify-center w-full mb-8">
-          <p className="text-lg">
-            You have played {games.length - filteredGames.length} of your{" "}
-            {games.length} games.
-          </p>
-          <p className="text-lg">
-            You still have {filteredGames.length} games to play.
-          </p>
-          <p className="text-sm opacity-40">SteamId: {steamId}</p>
-        </div>
+          <RandomGameControls />
 
-        <GamesList />
+          <FilterControls />
+
+          <div className="flex flex-col items-center justify-center w-full mb-8">
+            <p className="text-lg">
+              You have played {games.length - filteredGames.length} of your{" "}
+              {games.length} games.
+            </p>
+            <p className="text-lg">
+              You still have {filteredGames.length} games to play.
+            </p>
+            <p className="text-sm opacity-40">SteamId: {steamId}</p>
+          </div>
+
+          <GamesList />
+        </RandomGameProvider>
       </GamesProvider>
     </main>
   );
