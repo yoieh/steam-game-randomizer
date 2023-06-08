@@ -1,45 +1,45 @@
 import Image from "next/image";
 import { convertMinutesToReadableTime } from "@/utils/StringFormat";
 import { LibraryGame } from "@/types/LibraryGame";
+import React from "react";
 
-export const GameCard = ({
-  game,
-  size = "sm",
-}: {
+interface GameCardProps {
   game: LibraryGame;
   size?: "sm" | "lg";
-}) => {
-  return (
-    <div className="flex flex-col items-center justify-center bg-slate-700 rounded-lg shadow-lg">
-      <div
-        className={`relative rounded-t-lg w-[20rem] h-[10rem] md:w-[32rem] md:h-[16rem]
-          ${size == "lg" && "lg:w-[64rem] lg:h-[32rem]"}
-        `}
-      >
-        <Image
-          src={`https://steamcdn-a.akamaihd.net/steam/apps/${game.appid}/header.jpg`}
-          fill
-          alt={""}
-          className="object-cover rounded-t-lg "
-        />
-      </div>
-      <div className="flex flex-col items-center justify-center flex-1 w-full p-4">
-        <h2 className="text-xl font-bold">{game.name}</h2>
-        <p className="text-sm">
-          Playtime: {convertMinutesToReadableTime(game.playtime_forever)}
-        </p>
-      </div>
-    </div>
-  );
-};
+}
 
-export const GameCardSkeleton = ({ size = "sm" }: { size?: "sm" | "lg" }) => {
-  return (
-    <div className="flex flex-col items-center justify-center bg-slate-700 rounded-lg shadow-lg">
-      <div
-        className={`flex flex-col items-center justify-center rounded-t-lg w-[20rem] h-[10rem] md:w-[32rem] md:h-[16rem] bg-gray-800 animate-pulse
+export const GameCard: React.FC<GameCardProps> = ({ game, size = "sm" }) => (
+  <div className="bg-slate-700 rounded-lg shadow-lg">
+    <div
+      className={`relative rounded-t-lg 
+          w-[20rem] h-[10rem] md:w-[32rem] md:h-[16rem]
           ${size == "lg" && "lg:w-[64rem] lg:h-[32rem]"}
         `}
+    >
+      <Image
+        src={`https://steamcdn-a.akamaihd.net/steam/apps/${game.appid}/header.jpg`}
+        fill
+        alt={""}
+        className="object-cover rounded-t-lg "
+      />
+    </div>
+    <div className="flex flex-col items-center justify-center flex-1 w-full p-4">
+      <h2 className="text-xl font-bold">{game.name}</h2>
+      <p className="text-sm">
+        Playtime: {convertMinutesToReadableTime(game.playtime_forever)}
+      </p>
+    </div>
+  </div>
+);
+
+export const GameCardSkeleton: React.FC<GameCardProps> = ({ size = "sm" }) => {
+  return (
+    <div className="bg-slate-700 rounded-lg shadow-lg">
+      <div
+        className={`flex flex-col items-center justify-center relative rounded-t-lg bg-gray-800 animate-pulse
+          w-[20rem] h-[10rem] md:w-[32rem] md:h-[16rem]
+          ${size == "lg" && "lg:w-[64rem] lg:h-[32rem]"}
+       `}
       >
         <svg
           className="w-12 h-12 text-gray-600 flex items-center justify-center"
