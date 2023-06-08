@@ -13,14 +13,8 @@ import { SignIn, SignOut } from "@/components/Sign";
 export default async function Home() {
   const session = await getServerSession();
 
-  // const steamId = process.env.STEAM_ID;
-
-  // if (!steamId) return <div>No steamId defined</div>;
-
-  // const games = await getOwnedGames(steamId);
-
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24 text-white">
+    <main className="flex min-h-screen flex-col items-center justify-center text-white p-4">
       <div className="flex flex-col items-center justify-center w-full mb-8">
         <h1 className="text-4xl font-bold text-center ">
           Steam Game Randomizer

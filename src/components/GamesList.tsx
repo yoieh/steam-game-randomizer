@@ -1,6 +1,6 @@
 "use client";
 
-import { GameCard } from "@/components/GameCard";
+import { GameCard, GameCardSkeleton } from "@/components/GameCard";
 import { useGames } from "@/hooks/useGames";
 
 export const GamesList = () => {
@@ -8,6 +8,9 @@ export const GamesList = () => {
 
   return (
     <div className="flex flex-wrap justify-center mb-8 sm:w-full">
+      {!filteredGames.length &&
+        [...Array(10)].map((_, i) => <GameCardSkeleton key={i} />)}
+
       {filteredGames.map((game) => (
         <GameCard key={game.appid} game={game} />
       ))}

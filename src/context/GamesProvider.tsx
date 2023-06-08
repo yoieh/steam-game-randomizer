@@ -47,7 +47,6 @@ export const GamesProvider = ({ children }: GamesProviderProps) => {
         const data = await response.json();
 
         setGames(data);
-
         return data;
       } catch (error) {
         console.error("Error fetching game library:", error);
@@ -56,6 +55,8 @@ export const GamesProvider = ({ children }: GamesProviderProps) => {
     };
 
     void fetchGames();
+
+    return () => {};
   }, [session]);
 
   const [filter, setFilter] = useState<PlayerFilter>({
