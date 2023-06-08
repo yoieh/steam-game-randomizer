@@ -2,10 +2,11 @@ import Image from "next/image";
 import { convertMinutesToReadableTime } from "@/utils/StringFormat";
 import { LibraryGame } from "@/types/LibraryGame";
 import React from "react";
+import { Size } from "@/types/Constants";
 
 interface GameCardProps {
   game: LibraryGame;
-  size?: "sm" | "lg";
+  size?: Size;
 }
 
 export const GameCard: React.FC<GameCardProps> = ({ game, size = "sm" }) => (
@@ -32,7 +33,13 @@ export const GameCard: React.FC<GameCardProps> = ({ game, size = "sm" }) => (
   </div>
 );
 
-export const GameCardSkeleton: React.FC<GameCardProps> = ({ size = "sm" }) => {
+interface GameCardSkeletonProps {
+  size?: Size;
+}
+
+export const GameCardSkeleton: React.FC<GameCardSkeletonProps> = ({
+  size = "sm",
+}) => {
   return (
     <div className="bg-slate-700 rounded-lg shadow-lg">
       <div
