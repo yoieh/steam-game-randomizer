@@ -13,7 +13,7 @@ import { SignIn, SignOut } from "@/components/Sign";
 export const metadata = {
   title: "Steam Game Randomizer",
   description:
-    "Randomly select a game from your games form your Steam library.",
+    "Randomly select a game from your Steam library.",
 };
 
 export default async function Home() {
@@ -26,7 +26,7 @@ export default async function Home() {
           Steam Game Randomizer
         </h1>
         <p className="text-lg text-center">
-          Randomly select a game from your games form your Steam library.
+          Randomly select a game from your Steam library.
         </p>
       </div>
 
