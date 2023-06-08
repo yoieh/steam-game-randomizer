@@ -10,7 +10,7 @@ export const GameCard = ({
   size?: "sm" | "lg";
 }) => {
   return (
-    <div className="flex flex-col items-center justify-center m-4 bg-slate-700 rounded-lg shadow-lg">
+    <div className="flex flex-col items-center justify-center bg-slate-700 rounded-lg shadow-lg">
       <div
         className={`relative rounded-t-lg w-[20rem] h-[10rem] md:w-[32rem] md:h-[16rem]
           ${size == "lg" && "lg:w-[64rem] lg:h-[32rem]"}
@@ -35,7 +35,7 @@ export const GameCard = ({
 
 export const GameCardSkeleton = ({ size = "sm" }: { size?: "sm" | "lg" }) => {
   return (
-    <div className="flex flex-col items-center justify-center m-4 bg-slate-700 rounded-lg shadow-lg">
+    <div className="flex flex-col items-center justify-center bg-slate-700 rounded-lg shadow-lg">
       <div
         className={`flex flex-col items-center justify-center rounded-t-lg w-[20rem] h-[10rem] md:w-[32rem] md:h-[16rem] bg-gray-800 animate-pulse
           ${size == "lg" && "lg:w-[64rem] lg:h-[32rem]"}
