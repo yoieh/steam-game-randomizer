@@ -3,6 +3,7 @@ import { convertMinutesToReadableTime } from "@/utils/StringFormat";
 import { LibraryGame } from "@/types/LibraryGame";
 import React from "react";
 import { Size } from "@/types/Constants";
+import format from "date-fns/format";
 
 interface GameCardProps {
   game: LibraryGame;
@@ -29,6 +30,12 @@ export const GameCard: React.FC<GameCardProps> = ({ game, size = "sm" }) => (
       <p className="text-sm">
         Playtime: {convertMinutesToReadableTime(game.playtime_forever)}
       </p>
+      <span className="text-sm">
+        Last played:{" "}
+        {game.rtime_last_played > 0
+          ? format(new Date(game.rtime_last_played * 1000), "yyyy-MM-dd")
+          : "Never"}
+      </span>
     </div>
   </div>
 );
@@ -60,7 +67,8 @@ export const GameCardSkeleton: React.FC<GameCardSkeletonProps> = ({
       </div>
       <div className="flex flex-col items-center justify-center flex-1 w-full p-4">
         <div className="w-2/3 h-4 mb-2 bg-gray-800 rounded-lg animate-pulse" />
-        <div className="w-1/3 h-4 bg-gray-800 rounded-lg animate-pulse" />
+        <div className="w-1/3 h-4 mb-2 bg-gray-800 rounded-lg animate-pulse" />
+        <div className="w-1/2 h-4 mb-2 bg-gray-800 rounded-lg animate-pulse" />
       </div>
     </div>
   );
