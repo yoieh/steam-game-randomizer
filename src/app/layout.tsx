@@ -1,6 +1,10 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
+import { SignIn, SignOut } from "@/components/Sign";
+import { SiteNavigation } from "@/components/SiteNavigation";
+
+import { getServerSession } from "next-auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +24,7 @@ export default function RootLayout({
         suppressHydrationWarning={true}
         className={`${inter.className} text-white bg-slate-800`}
       >
+        <SiteNavigation />
         <Providers>{children}</Providers>
       </body>
     </html>

@@ -12,8 +12,7 @@ import { SignIn, SignOut } from "@/components/Sign";
 
 export const metadata = {
   title: "Steam Game Randomizer",
-  description:
-    "Randomly select a game from your Steam library.",
+  description: "Randomly select a game from your Steam library.",
 };
 
 export default async function Home() {
@@ -32,8 +31,6 @@ export default async function Home() {
 
       {session ? (
         <>
-          <SignOut />
-
           <GamesProvider games={[]}>
             <RandomGameProvider>
               <RandomGame />
@@ -53,7 +50,6 @@ export default async function Home() {
           <p className="text-lg text-center mb-4">
             Please login to your Steam account to use this app.
           </p>
-          <SignIn />
         </div>
       )}
     </main>
