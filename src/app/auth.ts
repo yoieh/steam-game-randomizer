@@ -1,6 +1,6 @@
 import SteamProvider, { PROVIDER_ID } from "next-auth-steam";
 
-import type { AuthOptions } from "next-auth";
+import type { AuthOptions, Session } from "next-auth";
 import type { NextRequest } from "next/server";
 import { headers } from "next/headers";
 
@@ -30,7 +30,7 @@ export function getAuthOptions(req?: NextRequest): AuthOptions {
           // @ts-expect-error
           session.user.steam = token.steam;
         }
-        return session;
+        return session as Session;
       },
     },
   };

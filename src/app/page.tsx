@@ -1,6 +1,5 @@
-import { getServerSession } from "next-auth";
+import { AuthOptions, getServerSession, Session } from "next-auth";
 
-import { getOwnedGames } from "@/services/user";
 import { RandomGame } from "@/components/RandomGame";
 import { GamesProvider } from "@/context/GamesProvider";
 import { RandomGameControls } from "@/components/RandomGameControls";
@@ -8,8 +7,6 @@ import { FilterControls } from "@/components/FilterControls";
 import { RandomGameProvider } from "@/context/RandomGameProvider";
 import { FilterData } from "@/components/FilterData";
 import { GamesList } from "@/components/GamesList";
-import { SignIn, SignOut } from "@/components/Sign";
-import { getSession } from "next-auth/react";
 import { getAuthOptions } from "./auth";
 import { headers } from "next/headers";
 
@@ -18,7 +15,7 @@ export const metadata = {
   description: "Randomly select a game from your Steam library.",
 };
 
-const fetchGames = async (session) => {
+const fetchGames = async (session: Session) => {
   if (!session?.user?.steam?.steamid) return [];
 
   const headersData = headers();
@@ -43,8 +40,9 @@ const fetchGames = async (session) => {
 };
 
 export default async function Home() {
-  const session = await getServerSession(getAuthOptions());
-  const games = await fetchGames(session);
+  const session = await getServerSession<AuthOptions, Session>(
+    getAuthOptions()
+  );
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen mx-4 my-8 text-white">
@@ -57,29 +55,37 @@ export default async function Home() {
         </p>
       </div>
 
-      {session ? (
-        <>
-          <GamesProvider games={games}>
-            <RandomGameProvider>
-              <RandomGame />
-
-              <RandomGameControls />
-
-              <FilterControls />
-
-              <FilterData />
-
-              <GamesList />
-            </RandomGameProvider>
-          </GamesProvider>
-        </>
-      ) : (
-        <div className="flex flex-col items-center justify-center w-full">
-          <p className="mb-4 text-lg text-center">
-            Please login to your Steam account to use this app.
-          </p>
-        </div>
-      )}
+      {!session ? <NoneAuth /> : <Authenticated session={session} />}
     </main>
+  );
+}
+
+function NoneAuth() {
+  return (
+    <div className="flex flex-col items-center justify-center w-full">
+      <p className="mb-4 text-lg text-center">
+        Please login to your Steam account to use this app.
+      </p>
+    </div>
+  );
+}
+
+async function Authenticated({ session }: { session: Session }) {
+  const games = await fetchGames(session);
+
+  return (
+    <GamesProvider games={games}>
+      <RandomGameProvider>
+        <RandomGame />
+
+        <RandomGameControls />
+
+        <FilterControls />
+
+        <FilterData />
+
+        <GamesList />
+      </RandomGameProvider>
+    </GamesProvider>
   );
 }

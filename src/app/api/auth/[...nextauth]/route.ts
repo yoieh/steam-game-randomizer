@@ -7,7 +7,7 @@ async function handler(
   req: NextRequest,
   ctx: { params: { nextauth: string[] } }
 ) {
-  return NextAuth(req, ctx, getAuthOptions(req));
+  return NextAuth(getAuthOptions(req));
 }
 
 export { handler as GET, handler as POST };
