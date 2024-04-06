@@ -1,4 +1,4 @@
-import { LibraryGame } from "@/types/LibraryGame";
+import type { LibraryGame } from "@/types/LibraryGame";
 import { headers } from "next/headers";
 
 export async function getOwnedGames(steamId: string): Promise<LibraryGame[]> {

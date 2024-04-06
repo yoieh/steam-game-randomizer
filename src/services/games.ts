@@ -1,5 +1,5 @@
-import { LibraryGame } from "@/types/LibraryGame";
-import { SteamGame } from "@/types/SteamGame";
+import type { LibraryGame } from "@/types/LibraryGame";
+import type { SteamGame } from "@/types/SteamGame";
 import { headers } from "next/headers";
 
 export async function getGameInfo(

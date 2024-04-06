@@ -1,9 +1,8 @@
 "use client";
 
-import { useSession } from "next-auth/react";
-import { createContext, useEffect, useMemo, useState } from "react";
-import { LibraryGame } from "@/types/LibraryGame";
-import { PlayerFilter } from "@/types/PlayerFilter";
+import { createContext, useMemo, useState } from "react";
+import type { LibraryGame } from "@/types/LibraryGame";
+import type { PlayerFilter } from "@/types/PlayerFilter";
 
 export interface GamesContext {
   games: LibraryGame[];

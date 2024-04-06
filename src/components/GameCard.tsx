@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { convertMinutesToReadableTime } from "@/utils/StringFormat";
-import { LibraryGame } from "@/types/LibraryGame";
+import type { LibraryGame } from "@/types/LibraryGame";
 import React from "react";
-import { Size } from "@/types/Constants";
+import type { Size } from "@/types/Constants";
 import format from "date-fns/format";
 
 interface GameCardProps {
@@ -11,7 +11,7 @@ interface GameCardProps {
 }
 
 export const GameCard: React.FC<GameCardProps> = ({ game, size = "sm" }) => (
-  <div className="bg-slate-700 rounded-lg shadow-lg">
+  <div className="rounded-lg shadow-lg bg-slate-700">
     <div
       className={`relative rounded-t-lg 
           w-[20rem] h-[10rem] md:w-[32rem] md:h-[16rem]
@@ -48,7 +48,7 @@ export const GameCardSkeleton: React.FC<GameCardSkeletonProps> = ({
   size = "sm",
 }) => {
   return (
-    <div className="bg-slate-700 rounded-lg shadow-lg">
+    <div className="rounded-lg shadow-lg bg-slate-700">
       <div
         className={`flex flex-col items-center justify-center relative rounded-t-lg bg-gray-800 animate-pulse
           w-[20rem] h-[10rem] md:w-[32rem] md:h-[16rem]
@@ -56,7 +56,7 @@ export const GameCardSkeleton: React.FC<GameCardSkeletonProps> = ({
        `}
       >
         <svg
-          className="w-12 h-12 text-gray-600 flex items-center justify-center"
+          className="flex items-center justify-center w-12 h-12 text-gray-600"
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
           fill="currentColor"

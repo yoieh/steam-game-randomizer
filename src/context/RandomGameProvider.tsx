@@ -1,7 +1,7 @@
 "use client";
 
 import { useGames } from "@/hooks/useGames";
-import { LibraryGame } from "@/types/LibraryGame";
+import type { LibraryGame } from "@/types/LibraryGame";
 import React, { createContext, useCallback, useEffect, useState } from "react";
 
 export interface RandomGameContext {
