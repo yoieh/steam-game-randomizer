@@ -1,4 +1,4 @@
-import { AuthOptions, getServerSession, Session } from "next-auth";
+import { getServerSession, type AuthOptions, type Session } from "next-auth";
 
 import { RandomGame } from "@/components/RandomGame";
 import { GamesProvider } from "@/context/GamesProvider";
