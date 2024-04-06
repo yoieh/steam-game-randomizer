@@ -3,8 +3,11 @@ import SteamProvider, { PROVIDER_ID } from "next-auth-steam";
 import type { AuthOptions, Session } from "next-auth";
 import type { NextRequest } from "next/server";
 import { headers } from "next/headers";
+import type { NextApiRequest } from "next";
 
-export function getAuthOptions(req?: NextRequest): AuthOptions {
+export function getAuthOptions(
+  req?: NextApiRequest | NextRequest
+): AuthOptions {
   const headersData = headers();
   const protocol = headersData.get("x-forwarded-proto");
   const host = headersData.get("host");

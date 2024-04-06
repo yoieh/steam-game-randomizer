@@ -30,14 +30,10 @@ export interface GamesProviderProps {
 }
 
 export const GamesProvider = ({ children, games }: GamesProviderProps) => {
-  const session = useSession();
-
   const [filter, setFilter] = useState<PlayerFilter>({
     played: true,
     "not-played": true,
   });
-
-  console.log(games);
 
   const filteredGames = useMemo(
     () =>
