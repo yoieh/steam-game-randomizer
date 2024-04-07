@@ -12,14 +12,14 @@ export const GameCardSkeleton: React.FC<GameCardSkeletonProps> = ({
 }) => {
   return (
     <div
-      className={`flex flex-col rounded-lg shadow-lg bg-slate-700 
-                  w-full lg:w-[${size == "lg" ? "64rem" : "31rem"}]
-      `}
+      className={`flex flex-col rounded-lg shadow-lg bg-slate-700 w-full ${
+        size == "lg" ? "lg:w-[64rem]" : "lg:w-[31rem]"
+      }`}
     >
       <div
-        className={`relative rounded-t-lg 
-                    h-[16rem] ${size == "lg" && "lg:h-[32rem]"}
-        `}
+        className={`relative rounded-t-lg h-[16rem] ${
+          size == "lg" && "lg:h-[32rem]"
+        }`}
       >
         <svg
           className="flex items-center justify-center w-12 h-12 text-gray-600"

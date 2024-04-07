@@ -12,14 +12,14 @@ interface GameCardProps {
 
 export const GameCard: React.FC<GameCardProps> = ({ game, size = "sm" }) => (
   <div
-    className={`flex flex-col rounded-lg shadow-lg bg-slate-700 
-                w-full lg:w-[${size == "lg" ? "64rem" : "31rem"}]
-    `}
+    className={`flex flex-col rounded-lg shadow-lg bg-slate-700 w-full ${
+      size == "lg" ? "lg:w-[64rem]" : "lg:w-[31rem]"
+    }`}
   >
     <div
-      className={`relative rounded-t-lg 
-                  h-[16rem] ${size == "lg" && "lg:h-[32rem]"}
-        `}
+      className={`relative rounded-t-lg h-[16rem] ${
+        size == "lg" && "lg:h-[32rem]"
+      }`}
     >
       <Image
         src={`https://steamcdn-a.akamaihd.net/steam/apps/${game.appid}/header.jpg`}
