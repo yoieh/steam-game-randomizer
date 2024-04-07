@@ -45,7 +45,7 @@ export default async function Home() {
   );
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen mx-4 my-8 text-white">
+    <>
       <div className="flex flex-col items-center justify-center w-full mb-8">
         <h1 className="text-4xl font-bold text-center ">
           Steam Game Randomizer
@@ -56,7 +56,7 @@ export default async function Home() {
       </div>
 
       {!session ? <NoneAuth /> : <Authenticated session={session} />}
-    </main>
+    </>
   );
 }
 

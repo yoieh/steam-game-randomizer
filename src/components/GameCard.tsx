@@ -11,11 +11,14 @@ interface GameCardProps {
 }
 
 export const GameCard: React.FC<GameCardProps> = ({ game, size = "sm" }) => (
-  <div className="rounded-lg shadow-lg bg-slate-700">
+  <div
+    className={`flex flex-col rounded-lg shadow-lg bg-slate-700 
+                w-full lg:w-[${size == "lg" ? "64rem" : "31rem"}]
+    `}
+  >
     <div
       className={`relative rounded-t-lg 
-          w-[20rem] h-[10rem] md:w-[32rem] md:h-[16rem]
-          ${size == "lg" && "lg:w-[64rem] lg:h-[32rem]"}
+                  h-[16rem] ${size == "lg" && "lg:h-[32rem]"}
         `}
     >
       <Image
@@ -25,8 +28,10 @@ export const GameCard: React.FC<GameCardProps> = ({ game, size = "sm" }) => (
         className="object-cover rounded-t-lg "
       />
     </div>
-    <div className="flex flex-col items-center justify-center flex-1 w-full p-4">
-      <h2 className="text-xl font-bold">{game.name}</h2>
+    <div className="flex flex-col items-center justify-center flex-1 w-full p-4 text-center">
+      <h2 className="overflow-auto text-xl font-bold break-words">
+        {game.name}
+      </h2>
       <p className="text-sm">
         Playtime: {convertMinutesToReadableTime(game.playtime_forever)}
       </p>

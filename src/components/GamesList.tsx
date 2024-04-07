@@ -6,7 +6,7 @@ import { useGames } from "@/hooks/useGames";
 import { useEffect, useMemo, useState } from "react";
 import ScrollToTopButton from "./ScrollToTopButton";
 
-const NEXT_AMOUNT = 8;
+const NEXT_AMOUNT = 6;
 
 export const GamesList = () => {
   const { filteredGames } = useGames();
@@ -50,7 +50,7 @@ export const GamesList = () => {
   }
 
   return (
-    <div className="flex flex-wrap justify-center gap-4 mb-NEXT_AMOUNT sm:w-full">
+    <div className="flex flex-wrap justify-center gap-4 mb-8 sm:w-full">
       {visibleGames.map((game) => (
         <GameCard key={game.appid} game={game} />
       ))}

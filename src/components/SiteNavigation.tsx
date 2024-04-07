@@ -15,8 +15,8 @@ export const SiteNavigation = async (props: Props) => {
   ];
 
   return (
-    <div className="sticky top-0 right-0 left-0 z-40 bg-slate-800/90 backdrop-blur-md shadow-lg">
-      <div className="flex justify-around items-center p-4">
+    <div className="sticky top-0 left-0 right-0 z-40 flex justify-center shadow-lg bg-slate-800/90 backdrop-blur-md">
+      <div className="container flex items-center justify-between p-4 sm:w-full">
         {items.map(({ name, href }) => (
           <a key={name} href={href}>
             {name}

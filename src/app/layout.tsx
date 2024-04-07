@@ -24,8 +24,14 @@ export default function RootLayout({
         suppressHydrationWarning={true}
         className={`${inter.className} text-white bg-slate-800`}
       >
-        <SiteNavigation />
-        <Providers>{children}</Providers>
+        <Providers>
+          <SiteNavigation />
+          <div className="flex flex-col items-center justify-center mx-4 my-8">
+            <main className="container flex flex-col items-center min-h-screen text-white">
+              {children}
+            </main>
+          </div>
+        </Providers>
         <Analytics />
         <SpeedInsights />
       </body>
