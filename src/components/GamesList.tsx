@@ -4,6 +4,7 @@ import { GameCard } from "@/components/GameCard";
 import { GameCardSkeleton } from "./GameCardSkeleton";
 import { useGames } from "@/hooks/useGames";
 import { useEffect, useMemo, useState } from "react";
+import ScrollToTopButton from "./ScrollToTopButton";
 
 const NEXT_AMOUNT = 8;
 
@@ -55,6 +56,7 @@ export const GamesList = () => {
       ))}
       {loading &&
         [...Array(NEXT_AMOUNT)].map((_, i) => <GameCardSkeleton key={i} />)}
+      <ScrollToTopButton />
     </div>
   );
 };
