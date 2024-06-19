@@ -21,6 +21,6 @@ export async function GET(
     return NextResponse.json(data[slug].data);
   } catch (error) {
     console.error("Error fetching game library:", error);
-    return null;
+    return NextResponse.error();
   }
 }

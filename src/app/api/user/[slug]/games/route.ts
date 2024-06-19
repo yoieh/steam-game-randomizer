@@ -43,6 +43,6 @@ export async function GET(
     return NextResponse.json(data.response.games);
   } catch (error) {
     console.error("Error fetching game library:", error);
-    return NextResponse.json([]);
+    return NextResponse.error();
   }
 }
