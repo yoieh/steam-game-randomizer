@@ -6,14 +6,12 @@ import type { PlayerFilter } from "@/types/PlayerFilter";
 
 export interface GamesContext {
   games: LibraryGame[];
-  filteredGames: LibraryGame[];
   filter: PlayerFilter;
   setFilter: React.Dispatch<React.SetStateAction<PlayerFilter>>;
 }
 
 export const gamesContext = createContext<GamesContext>({
   games: [],
-  filteredGames: [],
   filter: {
     played: true,
     "not-played": true,
@@ -34,15 +32,6 @@ export const GamesProvider = ({ children, games }: GamesProviderProps) => {
     "not-played": true,
   });
 
-  const filteredGames = useMemo(
-    () =>
-      games.filter((game) => {
-        if (filter.played && game.playtime_forever > 0) return true;
-        if (filter["not-played"] && game.playtime_forever === 0) return true;
-        return false;
-      }),
-    [filter, games]
-  );
 
   const sortedGames = useMemo(
     () => games.sort((a, b) => a.playtime_forever - b.playtime_forever),
@@ -53,7 +42,6 @@ export const GamesProvider = ({ children, games }: GamesProviderProps) => {
     <gamesContext.Provider
       value={{
         games: sortedGames,
-        filteredGames,
         filter,
         setFilter,
       }}

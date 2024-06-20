@@ -2,14 +2,15 @@
 
 import { GameCard } from "@/components/GameCard";
 import { GameCardSkeleton } from "./GameCardSkeleton";
-import { useGames } from "@/hooks/useGames";
-import { useEffect, useMemo, useState } from "react";
+import { useFilteredGames } from "@/hooks/useGames";
+import { useEffect, useState } from "react";
 import ScrollToTopButton from "./ScrollToTopButton";
 
 const NEXT_AMOUNT = 6;
 
 export const GamesList = () => {
-  const { filteredGames } = useGames();
+  const filteredGames = useFilteredGames();
+
   const [visibleGames, setVisibleGames] = useState(
     filteredGames.slice(0, NEXT_AMOUNT)
   );
@@ -39,7 +40,7 @@ export const GamesList = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (!filteredGames.length) {
+  if (!visibleGames.length) {
     return (
       <div className="flex flex-wrap justify-center gap-4 mb-8 sm:w-full">
         {[...Array(NEXT_AMOUNT)].map((_, i) => (

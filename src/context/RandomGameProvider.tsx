@@ -1,6 +1,6 @@
 "use client";
 
-import { useGames } from "@/hooks/useGames";
+import { useFilteredGames, useGames } from "@/hooks/useGames";
 import type { LibraryGame } from "@/types/LibraryGame";
 import React, { createContext, useCallback, useEffect, useState } from "react";
 
@@ -21,7 +21,7 @@ interface RandomGameProviderProps {
 }
 
 export const RandomGameProvider = ({ children }: RandomGameProviderProps) => {
-  const { filteredGames } = useGames();
+  const filteredGames = useFilteredGames();
 
   const [randomItem, setRandomItem] = useState<LibraryGame | null>(null);
 
