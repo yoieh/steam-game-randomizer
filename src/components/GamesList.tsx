@@ -11,9 +11,8 @@ const NEXT_AMOUNT = 6;
 export const GamesList = () => {
   const filteredGames = useFilteredGames();
 
-  const [visibleGames, setVisibleGames] = useState(
-    filteredGames.slice(0, NEXT_AMOUNT)
-  );
+  const [visibleAmount, setVisibleAmount] = useState(NEXT_AMOUNT);
+
   const [loading, setLoading] = useState(false);
 
   const handleScroll = () => {
@@ -24,13 +23,7 @@ export const GamesList = () => {
       return;
     setLoading(true);
     setTimeout(() => {
-      setVisibleGames((prevGames) => [
-        ...prevGames,
-        ...filteredGames.slice(
-          prevGames.length,
-          prevGames.length + NEXT_AMOUNT
-        ),
-      ]);
+      setVisibleAmount((prev) => prev + NEXT_AMOUNT);
       setLoading(false);
     }, 200); // Simulate network delay
   };
@@ -39,6 +32,8 @@ export const GamesList = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const visibleGames = filteredGames.slice(0, visibleAmount)
 
   if (!visibleGames.length) {
     return (
