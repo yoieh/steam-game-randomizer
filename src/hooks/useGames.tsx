@@ -7,9 +7,7 @@ export const useGames = (): GamesContext => useContext(gamesContext);
 
 export const useFilteredGames = () => {
     const { games, filter } = useGames();
-
-    console.log(filter)
-    
+        
     return games.filter((game) => {
         if (filter.played && filter["not-played"]) return true;
         if (filter.played) return game.playtime_forever > 0;
